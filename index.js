@@ -17,8 +17,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin:
-      "https://6255657163f1a15152c45150--dynamic-horse-b66fba.netlify.app/",
+    origin: "https://conotes.netlify.app",
   })
 );
 
