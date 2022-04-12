@@ -15,11 +15,12 @@ app.listen(process.env.PORT || 5000, () => {
 
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:8080",
-//   })
-// );
+app.use(
+  cors({
+    origin:
+      "https://6255657163f1a15152c45150--dynamic-horse-b66fba.netlify.app/",
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL)
