@@ -4,7 +4,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
-import res from "express/lib/response";
 
 dotenv.config();
 
