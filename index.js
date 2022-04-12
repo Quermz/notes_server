@@ -32,6 +32,6 @@ mongoose
 app.use("/api/user", authRoutes);
 app.use("/api/notes", noteRoutes);
 
-app.get("/", () => {
+app.get("/", (req, res) => {
   res.status(200).json({ test: okay });
 });
