@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
+import res from "express/lib/response";
 
 dotenv.config();
 
@@ -30,3 +31,7 @@ mongoose
 
 app.use("/api/user", authRoutes);
 app.use("/api/notes", noteRoutes);
+
+app.get("/", () => {
+  res.status(200).json({ test: okay });
+});
