@@ -9,17 +9,13 @@ dotenv.config();
 
 const app = express();
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("server is running");
-});
-
-app.use(express.json());
-
 app.use(
   cors({
     origin: "*",
   })
 );
+
+app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -31,6 +27,6 @@ mongoose
 app.use("/api/user", authRoutes);
 app.use("/api/notes", noteRoutes);
 
-app.get("/", (req, res) => {
-  res.status(200).json({ test: "okaay" });
+app.listen(process.env.PORT || 5000, () => {
+  console.log("server is running");
 });
