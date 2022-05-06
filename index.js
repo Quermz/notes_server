@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://conotes.netlify.app",
+    origin: process.env.ORIGIN,
   })
 );
 

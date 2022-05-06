@@ -8,14 +8,12 @@ export const verifyToken = (req, res, next) => {
   if (authHeader) {
     jwt.verify(authHeader, process.env.JWT_KEY, (err, email) => {
       if (err) {
-        console.log(err);
-
         res.status(403).json("Token is not valid!");
       }
-      if (req.body.email != email.email) {
+      if (req.headers.email != email.email) {
         res.status(403).json("You are not authorized to access this route!");
       }
-      if (req.body.email == email.email) {
+      if (req.headers.email == email.email) {
         next();
       }
     });

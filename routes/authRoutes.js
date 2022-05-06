@@ -41,20 +41,21 @@ router.post("/register", async (req, res) => {
 // Login user
 router.post("/login", async (req, res) => {
   try {
-    console.log(req.body);
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.headers.email });
+    let validPassword = false;
     if (user) {
-      const validPassword = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
+      validPassword = await bcrypt.compare(req.headers.password, user.password);
     }
-    const accessToken = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
-      expiresIn: "12h",
-    });
-    delete user._doc.password;
-    console.log("ok");
-    res.status(200).json({ accessToken, user });
+    if (validPassword) {
+      const accessToken = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
+        expiresIn: "12h",
+      });
+      delete user._doc.password;
+
+      res.status(200).json({ accessToken, user });
+    } else {
+      res.status(401).json("invalid details");
+    }
   } catch (err) {
     res.status(500).send(err);
   }
