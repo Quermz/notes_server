@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.ORIGIN || "http://localhost:8080",
   })
 );
 
