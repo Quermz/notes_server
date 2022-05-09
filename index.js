@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 
+// cors middleware
 app.use(
   cors({
     origin: process.env.ORIGIN || "http://localhost:8080",
