@@ -25,9 +25,9 @@ mongoose
     console.log(err);
   });
 
-app.use("/api/user", authRoutes);
-app.use("/api/notes", noteRoutes);
-
 app.listen(process.env.PORT || 5000, () => {
   console.log("server is running");
 });
+
+app.use("/api/user", authRoutes);
+app.use("/api/notes", noteRoutes);
