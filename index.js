@@ -24,8 +24,20 @@ mongoose
     console.log(err);
   });
 
-app.use("/api/user", authRoutes);
-app.use("/api/notes", noteRoutes);
+app.use(
+  "/api/user",
+  cors({
+    origin: process.env.ORIGIN || "http://localhost:8080",
+  }),
+  authRoutes
+);
+app.use(
+  "/api/notes",
+  cors({
+    origin: process.env.ORIGIN || "http://localhost:8080",
+  }),
+  noteRoutes
+);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("server is running");
