@@ -12,7 +12,7 @@ const app = express();
 // cors middleware
 app.use(
   cors({
-    origin: process.env.ORIGIN || "http://localhost:8080",
+    origin: process.env.ORIGIN,
   })
 );
 
@@ -25,8 +25,8 @@ mongoose
     console.log(err);
   });
 
-app.listen(process.env.PORT, "0.0.0.0" || 5000, () => {
-  console.log("server is running");
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`server is listening on port ${process.env.PORT}`);
 });
 
 app.use("/api/user", authRoutes);
